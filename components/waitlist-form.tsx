@@ -31,7 +31,7 @@ export function WaitlistForm() {
 
   if (submitted) {
     return (
-      <div className="text-center space-y-4 p-6 bg-green-50 rounded-lg border border-green-200">
+      <div className="text-center space-y-4 p-6 bg-green-50 rounded-xl border border-green-200">
         <CheckCircle className="h-12 w-12 text-green-600 mx-auto" />
         <h3 className="text-lg font-semibold text-green-800">You're on the list!</h3>
         <p className="text-green-700">
@@ -53,23 +53,24 @@ export function WaitlistForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
+    <div className="space-y-4">
+      <div className="flex gap-2">
         <Input
-          id="email"
           type="email"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className="flex-1"
         />
+        <Button onClick={handleSubmit} disabled={loading || !email} className="bg-primary hover:bg-primary/90 px-6">
+          {loading ? "..." : "Request access"}
+        </Button>
       </div>
-      <div className="space-y-2">
-        <Label htmlFor="user-type">I am a...</Label>
+      <div className="space-y-3">
         <Select value={userType} onValueChange={setUserType} required>
-          <SelectTrigger id="user-type">
-            <SelectValue placeholder="Select your role" />
+          <SelectTrigger>
+            <SelectValue placeholder="I am a..." />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="student">Student looking for housing</SelectItem>
@@ -78,16 +79,13 @@ export function WaitlistForm() {
             <SelectItem value="other">Other</SelectItem>
           </SelectContent>
         </Select>
+        <div className="flex items-center space-x-2">
+          <Checkbox id="terms" required />
+          <Label htmlFor="terms" className="text-xs text-gray-600">
+            I agree to the terms and conditions and privacy policy
+          </Label>
+        </div>
       </div>
-      <div className="flex items-center space-x-2">
-        <Checkbox id="terms" required />
-        <Label htmlFor="terms" className="text-sm">
-          I agree to the terms and conditions and privacy policy
-        </Label>
-      </div>
-      <Button type="submit" className="w-full rounded-full" disabled={loading}>
-        {loading ? "Submitting..." : "Join Waitlist"}
-      </Button>
-    </form>
+    </div>
   )
 }
