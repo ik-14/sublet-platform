@@ -124,7 +124,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="waitlist" className="py-16">
+        <section id="waitlist" className="py-16" style={{ paddingTop: 0 }}>
           <div className="container px-4 md:px-6">
             <div className="max-w-lg mx-auto">
               <div className="backdrop-blur-sm bg-white/80 border border-gray-200/50 rounded-2xl p-8 shadow-lg">
