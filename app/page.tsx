@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState } from "react"
-import { Building, GraduationCap, MapPin, Users, Menu, X } from "lucide-react"
+import Link from "next/link";
+import { useState } from "react";
+import { Building, GraduationCap, MapPin, Users, Menu, X } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { WaitlistForm } from "@/components/waitlist-form"
-import { HowItWorks } from "@/components/how-it-works"
-import { Testimonials } from "@/components/testimonials"
-import { FAQ } from "@/components/faq"
+import { Button } from "@/components/ui/button";
+import { WaitlistForm } from "@/components/waitlist-form";
+import { HowItWorks } from "@/components/how-it-works";
+import { Testimonials } from "@/components/testimonials";
+import { FAQ } from "@/components/faq";
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToWaitlist = () => {
-    document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })
-    setMobileMenuOpen(false)
-  }
+    document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" });
+    setMobileMenuOpen(false);
+  };
 
   const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
-    setMobileMenuOpen(false)
-  }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    setMobileMenuOpen(false);
+  };
 
   return (
     <div className="flex min-h-screen flex-col bg-gray-50">
@@ -52,14 +52,25 @@ export default function Home() {
             >
               For Students
             </button>
-            <Button onClick={scrollToWaitlist} size="sm" className="rounded-full bg-gray-900 hover:bg-gray-800">
+            <Button
+              onClick={scrollToWaitlist}
+              size="sm"
+              className="rounded-full bg-gray-900 hover:bg-gray-800"
+            >
               Join Waitlist
             </Button>
           </nav>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <button
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
 
@@ -102,10 +113,12 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center gap-6 text-center max-w-4xl mx-auto">
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900">
-                Student Dorm Subletting, <span className="text-primary">Simplified</span>
+                Student Dorm Subletting,{" "}
+                <span className="text-primary">Simplified</span>
               </h1>
               <p className="max-w-2xl text-xl text-gray-600 leading-relaxed">
-                Your new favorite platform for affordable student housing during internships and short stays.
+                Your new favorite platform for affordable student housing during
+                internships and short stays.
               </p>
             </div>
           </div>
@@ -117,8 +130,12 @@ export default function Home() {
               <div className="backdrop-blur-sm bg-white/80 border border-gray-200/50 rounded-2xl p-8 shadow-lg">
                 <div className="space-y-6 text-center">
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Join our waitlist</h2>
-                    <p className="text-gray-600">Join Sarah, Mike, and 1,247 others on the waitlist.</p>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                      Join our waitlist
+                    </h2>
+                    <p className="text-gray-600">
+                      Join 1,567 others on the waitlist.
+                    </p>
                   </div>
                   <WaitlistForm />
                 </div>
@@ -132,10 +149,12 @@ export default function Home() {
             <div className="max-w-4xl mx-auto">
               <div className="backdrop-blur-sm bg-white/60 border border-gray-200/50 rounded-2xl p-8 md:p-12">
                 <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    How It Works
+                  </h2>
                   <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Our platform connects students and universities with those looking for affordable short-term
-                    housing.
+                    Our platform connects students and universities with those
+                    looking for affordable short-term housing.
                   </p>
                 </div>
                 <HowItWorks />
@@ -152,35 +171,53 @@ export default function Home() {
                   <div className="inline-block rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
                     For Universities
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Maximize your dormitory resources</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                    Maximize your dormitory resources
+                  </h2>
                   <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Turn vacant dorm rooms during breaks into revenue opportunities. Help students find affordable
-                    housing while generating additional income for your institution.
+                    Turn vacant dorm rooms during breaks into revenue
+                    opportunities. Help students find affordable housing while
+                    generating additional income for your institution.
                   </p>
                   <div className="grid gap-8 md:grid-cols-3 mt-12">
                     <div className="text-center space-y-3">
                       <div className="rounded-full bg-primary/10 p-4 w-16 h-16 mx-auto flex items-center justify-center">
                         <Building className="h-8 w-8 text-primary" />
                       </div>
-                      <h3 className="font-semibold text-gray-900">Utilize Empty Dorms</h3>
-                      <p className="text-sm text-gray-600">Make money from vacant rooms during breaks</p>
+                      <h3 className="font-semibold text-gray-900">
+                        Utilize Empty Dorms
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        Make money from vacant rooms during breaks
+                      </p>
                     </div>
                     <div className="text-center space-y-3">
                       <div className="rounded-full bg-primary/10 p-4 w-16 h-16 mx-auto flex items-center justify-center">
                         <Users className="h-8 w-8 text-primary" />
                       </div>
-                      <h3 className="font-semibold text-gray-900">Support Students</h3>
-                      <p className="text-sm text-gray-600">Help students find internship housing</p>
+                      <h3 className="font-semibold text-gray-900">
+                        Support Students
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        Help students find internship housing
+                      </p>
                     </div>
                     <div className="text-center space-y-3">
                       <div className="rounded-full bg-primary/10 p-4 w-16 h-16 mx-auto flex items-center justify-center">
                         <MapPin className="h-8 w-8 text-primary" />
                       </div>
-                      <h3 className="font-semibold text-gray-900">Generate Revenue</h3>
-                      <p className="text-sm text-gray-600">Create additional income streams</p>
+                      <h3 className="font-semibold text-gray-900">
+                        Generate Revenue
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        Create additional income streams
+                      </p>
                     </div>
                   </div>
-                  <Button onClick={scrollToWaitlist} className="rounded-full mt-8 bg-gray-900 hover:bg-gray-800">
+                  <Button
+                    onClick={scrollToWaitlist}
+                    className="rounded-full mt-8 bg-gray-900 hover:bg-gray-800"
+                  >
                     Join Waitlist
                   </Button>
                 </div>
@@ -201,33 +238,47 @@ export default function Home() {
                     Affordable housing for your internship
                   </h2>
                   <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Find budget-friendly accommodation in university dorms when you need it most. Perfect for summer
-                    internships, short courses, or temporary stays.
+                    Find budget-friendly accommodation in university dorms when
+                    you need it most. Perfect for summer internships, short
+                    courses, or temporary stays.
                   </p>
                   <div className="grid gap-8 md:grid-cols-3 mt-12">
                     <div className="text-center space-y-3">
                       <div className="rounded-full bg-primary/10 p-4 w-16 h-16 mx-auto flex items-center justify-center">
                         <GraduationCap className="h-8 w-8 text-primary" />
                       </div>
-                      <h3 className="font-semibold text-gray-900">Save Money</h3>
-                      <p className="text-sm text-gray-600">Pay less than traditional housing</p>
+                      <h3 className="font-semibold text-gray-900">
+                        Save Money
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        Pay less than traditional housing
+                      </p>
                     </div>
                     <div className="text-center space-y-3">
                       <div className="rounded-full bg-primary/10 p-4 w-16 h-16 mx-auto flex items-center justify-center">
                         <MapPin className="h-8 w-8 text-primary" />
                       </div>
-                      <h3 className="font-semibold text-gray-900">Prime Locations</h3>
-                      <p className="text-sm text-gray-600">Stay close to campus and city centers</p>
+                      <h3 className="font-semibold text-gray-900">
+                        Prime Locations
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        Stay close to campus and city centers
+                      </p>
                     </div>
                     <div className="text-center space-y-3">
                       <div className="rounded-full bg-primary/10 p-4 w-16 h-16 mx-auto flex items-center justify-center">
                         <Users className="h-8 w-8 text-primary" />
                       </div>
                       <h3 className="font-semibold text-gray-900">Connect</h3>
-                      <p className="text-sm text-gray-600">Meet other students and interns</p>
+                      <p className="text-sm text-gray-600">
+                        Meet other students and interns
+                      </p>
                     </div>
                   </div>
-                  <Button onClick={scrollToWaitlist} className="rounded-full mt-8 bg-gray-900 hover:bg-gray-800">
+                  <Button
+                    onClick={scrollToWaitlist}
+                    className="rounded-full mt-8 bg-gray-900 hover:bg-gray-800"
+                  >
                     Join Waitlist
                   </Button>
                 </div>
@@ -241,9 +292,12 @@ export default function Home() {
             <div className="max-w-4xl mx-auto">
               <div className="backdrop-blur-sm bg-white/60 border border-gray-200/50 rounded-2xl p-8 md:p-12">
                 <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Students Say</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    What Students Say
+                  </h2>
                   <p className="text-xl text-gray-600">
-                    Hear from students who have used our platform to find affordable housing.
+                    Hear from students who have used our platform to find
+                    affordable housing.
                   </p>
                 </div>
                 <Testimonials />
@@ -257,8 +311,12 @@ export default function Home() {
             <div className="max-w-3xl mx-auto">
               <div className="backdrop-blur-sm bg-white/60 border border-gray-200/50 rounded-2xl p-8 md:p-12">
                 <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-                  <p className="text-xl text-gray-600">Find answers to common questions about our platform.</p>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Frequently Asked Questions
+                  </h2>
+                  <p className="text-xl text-gray-600">
+                    Find answers to common questions about our platform.
+                  </p>
                 </div>
                 <FAQ />
               </div>
@@ -270,9 +328,12 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="max-w-2xl mx-auto">
               <div className="backdrop-blur-sm bg-white/80 border border-gray-200/50 rounded-2xl p-8 md:p-12 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Ready to get started?</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                  Ready to get started?
+                </h2>
                 <p className="text-xl text-gray-600 mb-8">
-                  Join our waitlist today and be the first to know when we launch.
+                  Join our waitlist today and be the first to know when we
+                  launch.
                 </p>
                 <Button
                   onClick={scrollToWaitlist}
@@ -295,7 +356,9 @@ export default function Home() {
                 <Building className="h-6 w-6 text-primary" />
                 <span className="text-lg font-bold">DormShare</span>
               </div>
-              <p className="text-sm text-gray-600">Connecting students with affordable housing solutions.</p>
+              <p className="text-sm text-gray-600">
+                Connecting students with affordable housing solutions.
+              </p>
             </div>
             <div className="grid grid-cols-2 gap-10 sm:grid-cols-2">
               <div className="flex flex-col gap-2">
@@ -321,25 +384,42 @@ export default function Home() {
               </div>
               <div className="flex flex-col gap-2">
                 <h3 className="text-sm font-medium text-gray-900">Legal</h3>
-                <Link href="#" className="text-sm text-gray-600 hover:text-gray-900">
+                <Link
+                  href="#"
+                  className="text-sm text-gray-600 hover:text-gray-900"
+                >
                   Privacy Policy
                 </Link>
-                <Link href="#" className="text-sm text-gray-600 hover:text-gray-900">
+                <Link
+                  href="#"
+                  className="text-sm text-gray-600 hover:text-gray-900"
+                >
                   Terms of Service
                 </Link>
-                <button onClick={scrollToWaitlist} className="text-sm text-gray-600 hover:text-gray-900 text-left">
+                <button
+                  onClick={scrollToWaitlist}
+                  className="text-sm text-gray-600 hover:text-gray-900 text-left"
+                >
                   Join Waitlist
                 </button>
               </div>
             </div>
           </div>
           <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-gray-200/50 pt-6 md:flex-row">
-            <p className="text-xs text-gray-500">© 2025 DormShare. All rights reserved.</p>
+            <p className="text-xs text-gray-500">
+              © 2025 DormShare. All rights reserved.
+            </p>
             <div className="flex gap-4">
-              <Link href="#" className="text-xs text-gray-500 hover:text-gray-700">
+              <Link
+                href="#"
+                className="text-xs text-gray-500 hover:text-gray-700"
+              >
                 Privacy Policy
               </Link>
-              <Link href="#" className="text-xs text-gray-500 hover:text-gray-700">
+              <Link
+                href="#"
+                className="text-xs text-gray-500 hover:text-gray-700"
+              >
                 Terms of Service
               </Link>
             </div>
@@ -347,5 +427,5 @@ export default function Home() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

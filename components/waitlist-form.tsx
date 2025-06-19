@@ -64,7 +64,7 @@ export function WaitlistForm() {
           className="flex-1"
         />
         <Button onClick={handleSubmit} disabled={loading || !email} className="bg-primary hover:bg-primary/90 px-6">
-          {loading ? "..." : "Request access"}
+          {loading ? "..." : "Join"}
         </Button>
       </div>
       <div className="space-y-3">
@@ -74,8 +74,8 @@ export function WaitlistForm() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="student">Student looking for housing</SelectItem>
+            <SelectItem value="property-manager">Student looking to sublet my place</SelectItem>
             <SelectItem value="university">University representative</SelectItem>
-            <SelectItem value="property-manager">Property manager</SelectItem>
             <SelectItem value="other">Other</SelectItem>
           </SelectContent>
         </Select>
