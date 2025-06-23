@@ -1,26 +1,49 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
-import { CheckCircle } from "lucide-react"
-import { supabase } from "@/lib/supabase"
-import { sendWaitlistConfirmation } from "@/lib/emailjs"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { CheckCircle } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { sendWaitlistConfirmation } from "@/lib/emailjs";
 
 export function WaitlistForm() {
-  const [email, setEmail] = useState("")
-  const [userType, setUserType] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
+  const [email, setEmail] = useState("");
+  const [userType, setUserType] = useState("");
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  // Email validation function
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email) && email.length > 0;
+  };
+
+  // Check if all required fields are valid
+  const isFormValid = isValidEmail(email) && userType && termsAccepted;
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
+
+    // Double check validation before submitting
+    if (!isFormValid) {
+      alert("Please fill in all required fields with valid information.");
+      return;
+    }
+
+    setLoading(true);
 
     try {
       // Check if email already exists
@@ -28,17 +51,19 @@ export function WaitlistForm() {
         .from("waitlist")
         .select("email")
         .eq("email", email)
-        .single()
+        .single();
 
       if (checkError && checkError.code !== "PGRST116") {
         // PGRST116 is "not found" error, which is expected for new users
-        throw checkError
+        throw checkError;
       }
 
       if (existingUser) {
-        alert("You're already on our waitlist! We'll notify you when we launch.")
-        setLoading(false)
-        return
+        alert(
+          "You're already on our waitlist! We'll notify you when we launch."
+        );
+        setLoading(false);
+        return;
       }
 
       // Insert new user
@@ -47,50 +72,56 @@ export function WaitlistForm() {
           email: email,
           user_type: userType || "not_specified",
         },
-      ])
+      ]);
 
-      if (insertError) throw insertError
+      if (insertError) throw insertError;
 
       // Send confirmation email using EmailJS
-      console.log("sendign an email...")
-      const emailResult = await sendWaitlistConfirmation(email, userType)
+      console.log("sendign an email...");
+      const emailResult = await sendWaitlistConfirmation(email, userType);
 
       if (!emailResult.success) {
-        console.error("Failed to send confirmation email:", emailResult.error)
+        console.error("Failed to send confirmation email:", emailResult.error);
         // Still show success to user since they were added to waitlist
       }
 
-      setLoading(false)
-      setSubmitted(true)
+      setLoading(false);
+      setSubmitted(true);
     } catch (error) {
-      console.error("Error:", error)
-      alert("Something went wrong. Please try again.")
-      setLoading(false)
+      console.error("Error:", error);
+      alert("Something went wrong. Please try again.");
+      setLoading(false);
     }
-  }
+  };
 
   if (submitted) {
     return (
       <div className="text-center space-y-4 p-6 bg-green-50 rounded-xl border border-green-200">
         <CheckCircle className="h-12 w-12 text-green-600 mx-auto" />
-        <h3 className="text-lg font-semibold text-green-800">You're on the list!</h3>
+        <h3 className="text-lg font-semibold text-green-800">
+          You're on the list!
+        </h3>
         <p className="text-green-700">
-          Thanks for joining our waitlist. We've sent a confirmation email to <strong>{email}</strong>.
+          Thanks for joining our waitlist. We've sent a confirmation email to{" "}
+          <strong>{email}</strong>.
         </p>
-        <p className="text-sm text-green-600">Check your inbox (and spam folder) for next steps!</p>
+        <p className="text-sm text-green-600">
+          Check your inbox (and spam folder) for next steps!
+        </p>
         <Button
           variant="outline"
           onClick={() => {
-            setSubmitted(false)
-            setEmail("")
-            setUserType("")
+            setSubmitted(false);
+            setEmail("");
+            setUserType("");
+            setTermsAccepted(false);
           }}
           className="mt-4"
         >
           Add Another Email
         </Button>
       </div>
-    )
+    );
   }
 
   return (
@@ -104,7 +135,11 @@ export function WaitlistForm() {
           required
           className="flex-1"
         />
-        <Button onClick={handleSubmit} disabled={loading || !email} className="bg-primary hover:bg-primary/90 px-6">
+        <Button
+          onClick={handleSubmit}
+          disabled={loading || !isFormValid}
+          className="bg-primary hover:bg-primary/90 px-6"
+        >
           {loading ? "..." : "Join"}
         </Button>
       </div>
@@ -115,18 +150,27 @@ export function WaitlistForm() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="guest">Student looking for housing</SelectItem>
-            <SelectItem value="student host">Student looking to sublet my place</SelectItem>
-            <SelectItem value="university">University representative</SelectItem>
+            <SelectItem value="student host">
+              Student looking to sublet my place
+            </SelectItem>
+            <SelectItem value="university">
+              University representative
+            </SelectItem>
             <SelectItem value="other">Other</SelectItem>
           </SelectContent>
         </Select>
         <div className="flex items-center space-x-2">
-          <Checkbox id="terms" required />
+          <Checkbox
+            id="terms"
+            checked={termsAccepted}
+            onCheckedChange={setTermsAccepted}
+            required
+          />
           <Label htmlFor="terms" className="text-xs text-gray-600">
             I agree to the terms and conditions and privacy policy
           </Label>
         </div>
       </div>
     </div>
-  )
+  );
 }
