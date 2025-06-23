@@ -18,7 +18,7 @@ export function FAQ() {
         <AccordionContent>
           Yes, many universities already have programs for summer housing or conference accommodations. DormShare works
           with universities to ensure all listings comply with their policies and local regulations. For
-          student-to-student subletting, we verify that the university allows this practice before listing.
+          student-to-student subletting, we verify that the landlord allows this practice before listing.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3">

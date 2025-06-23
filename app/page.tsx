@@ -50,7 +50,7 @@ export default function Home() {
               onClick={() => scrollToSection("for-students")}
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
             >
-              For Students
+              For Guests
             </button>
             <Button
               onClick={scrollToWaitlist}
@@ -94,7 +94,7 @@ export default function Home() {
                 onClick={() => scrollToSection("for-students")}
                 className="block w-full text-left text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors py-2"
               >
-                For Students
+                For Guests
               </button>
               <Button
                 onClick={scrollToWaitlist}
@@ -232,7 +232,7 @@ export default function Home() {
               <div className="backdrop-blur-sm bg-white/60 border border-gray-200/50 rounded-2xl p-8 md:p-12">
                 <div className="text-center space-y-6">
                   <div className="inline-block rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
-                    For Students
+                    For Guests
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
                     Affordable housing for your internship
@@ -360,7 +360,7 @@ export default function Home() {
                   onClick={() => scrollToSection("for-students")}
                   className="text-sm text-gray-600 hover:text-gray-900 text-left"
                 >
-                  For Students
+                  For Guests
                 </button>
               </div>
               <div className="flex flex-col gap-2">
