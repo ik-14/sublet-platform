@@ -134,7 +134,7 @@ export default function Home() {
                       Join our waitlist
                     </h2>
                     <p className="text-gray-600">
-                      Join 1,567 others on the waitlist.
+                      Join 1,396 others on the waitlist.
                     </p>
                   </div>
                   <WaitlistForm />
